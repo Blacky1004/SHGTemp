@@ -1,0 +1,14 @@
+{
+    "mqqt_server":"192.168.1.107",
+    "mqqt_port": 1883,
+    "user":"shguser",
+    "password": "start123",
+    "topic_in":"shgtmp_in",
+    "topic_out": "shgtmp_out",
+    "hostename": "Wohnzimmer",
+    "wifi_cycle": 30,
+    "temp_cycle": 30,
+    "enable_deepsleep": true,
+    "web_user": "admin",
+    "web_password": "admin"
+}

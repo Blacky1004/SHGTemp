@@ -1,0 +1,225 @@
+:root {
+    --tr-border-width: 1px;
+    --tr_btn-color: #fff;
+    --tr-btn-bg: #545b62;
+    --tr-btn-border-color: #545b62;
+    --tr-btn-hover-color: #fff;
+    --tr-btn-hover-bg: #474d53;
+    --tr-btn-hover-border-color: #43494e;
+    --tr-btn-focus-shadow-rgb: 110, 116, 122;
+    --tr-btn-active-color: #fff;
+    --tr-btn-active-bg: #43494e;
+    --tr-btn-active-border-color: #3f444a;
+    --tr-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --tr-btn-disabled-color: #fff;
+    --tr-btn-disabled-bg: #545b62;
+    --tr-btn-disabled-border-color: #545b62;
+}
+body {
+    background-color: #f4f6f9;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.container, .container-fluid {
+    --tr-gutter-x: 24px;
+    --tr-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--tr-gutter-x)* .5);
+    padding-left: calc(var(--tr-gutter-x)* .5);
+    margin-right: auto;
+    margin-left: auto;
+}
+.btn {
+    --tr-btn-padding-x: 16px;
+    --tr-btn-padding-y: 7px;
+    --tr-btn-font-size: 0.875rem;
+    --tr-btn-font-weight: 500;
+    --tr-btn-line-height: 1.5;
+    --tr-btn-color: #fff;
+    --tr-btn-bg: transparent;
+    --tr-btn-border-width: 1px;
+    --tr-btn-border-color: transparent;
+    --tr-btn-border-radius: 60px;
+    --tr-btn-hover-border-color: transparent;
+    --tr-btn-box-shadow: unset;
+    --tr-btn-disabled-opacity: 0.65;
+    --tr-btn-focus-box-shadow: 0 0 0 0.25rem rgba(110,116,122, .5);
+    display: inline-block;
+    padding: var(--tr-btn-padding-y) var(--tr-btn-padding-x);
+    font-family: var(--tr-btn-font-family);
+    font-size: var(--tr-btn-font-size);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--tr-btn-color);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: var(--tr-btn-border-width) solid var(--tr-btn-border-color);
+    border-radius: var(--tr-btn-border-radius);
+    background-color: var(--tr-btn-bg);
+    box-shadow: var(--tr-btn-box-shadow);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn-default {
+    --tr-btn-color: #fff;
+    --tr-btn-bg: #545b62;
+    --tr-btn-border-color: #545b62;
+    --tr-btn-hover-color: #fff;
+    --tr-btn-hover-bg: #474d53;
+    --tr-btn-hover-border-color: #43494e;
+    --tr-btn-focus-shadow-rgb: 110, 116, 122;
+    --tr-btn-active-color: #fff;
+    --tr-btn-active-bg: #43494e;
+    --tr-btn-active-border-color: #3f444a;
+    --tr-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --tr-btn-disabled-color: #fff;
+    --tr-btn-disabled-bg: #545b62;
+    --tr-btn-disabled-border-color: #545b62;
+}
+#main-wrapper {
+    min-height: 100vh;
+}
+.body-wrapper {
+    padding-top: 90px;
+}
+.page-wrapper .body-wrapper>.container-fluid {
+    transition: .2s ease-in;
+    padding: 0 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+.align-items-center {
+    align-items: center !important;
+}
+.text-white {
+    color: rgba(255,255,255, 1) !important;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #1d2228;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: #67757c;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid #ebf1f6;
+    border-radius: 8px;
+}
+
+.card-header {
+    padding: 10px 20px;
+    margin-bottom: 0;
+    color: #ffffff;
+    background-color: rgba(84,91,98,1);
+}
+.card-header:first-child {
+    border-radius: 8px 8px 0 0;
+}
+.card-title {
+    margin-bottom: 0.5rem;
+    color: #1d2228;
+    font-size: 18px;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 20px 20px;
+    color: white;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.row {
+    --tr-gutter-x: 24px;
+    --tr-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--tr-gutter-y));
+    margin-right: calc(-.5* var(--tr-gutter-x));
+    margin-left: calc(-.5* var(--tr-gutter-x));
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #67757c;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #ebf1f6;
+    border-radius: 8px;
+    box-shadow: unset;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.form-select {
+    --tr-form-select-imgage: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNiAxNic+PHBhdGggZmlsbD0nbm9uZScgc3Ryb2tlPScjMjYzMjM4JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnIHN0cm9rZS13aWR0aD0nMicgZD0nbTIgNSA2IDYgNi02Jy8+PC9zdmc+');
+    display: block;
+    width: 100%;
+    padding: 8px 38px 8px 16px;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #67757c;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #ffffff;
+    background-image: var(--tr-form-select-imgage), var(--tr-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px 12px;
+    border: 1px solid #ebf1f6;
+    border-radius: 8px;
+    box-shadow: unset;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.col-form-label {
+    padding-top: calc(8px + var(--tr-border-width));
+    padding-bottom: calc(8px + var(--tr-border-width));
+    margin-bottom: 0;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #545b62;
+}
+.form-label {
+    margin-bottom: .5rem;
+    font-weight: 600;
+    color: #545b62;
+}
+@media (min-width: 576px) {
+    .col-sm-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-sm-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+}

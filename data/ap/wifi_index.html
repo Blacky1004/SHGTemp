@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHG WiFi Konfiguration</title>    
+    <link rel="stylesheet" href="/style.css" >
+</head>
+<body>
+    <div id="main-wrapper">
+        <div class="page-wrapper">
+            <div class="body-wrapper">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0 text-white card-title">WiFi Einstellung</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4 row align-items-center">
+                                <label for="selssid" class="form-label col-sm-3 col-form-label">SSID:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="selssid"></select>
+                                </div>
+                            </div>
+                            <div class="mb-4 row align-items-center">
+                                <label for="passwd" class="form-label col-sm-3 col-form-label">Passwort:</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="passwd" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="mt-4 row" style="float: right">
+                                <button class="btn btn-default" id="btnsavewifi">Speichern</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/jquery-3.7.1.js"></script>
+    <script src="/system.js"></script>
+</body>
+</html>
