@@ -26,6 +26,7 @@ WiFiTask *wifiTask;
 DisplayTask *displayTask;
 ServerTask *serverTask;
 MeasureTask *measureTask;
+MqttTask *mqttTask;
 
 void setup()
 {
@@ -57,14 +58,13 @@ void setup()
   }
 
   // Systemconfig laden
-  syscfg.chipid = 0;
+  syscfg.chipid = chipId;
   syscfg.enable_deepsleep = false;
   syscfg.measure_cycle = 30;
-  strcpy(syscfg.mqqt_broker, "");
-  strcpy(syscfg.mqqt_password, "");
-  syscfg.mqqt_port = 1883;
+  strcpy(syscfg.mqqt_broker, "192.168.1.107");
+  strcpy(syscfg.mqqt_password, "Sphinx7!");
+  syscfg.mqqt_port = 1884;
   strcpy(syscfg.mqqt_topicIn, "shgtmp_in");
-  strcpy(syscfg.mqqt_topicOut, "shgtmp_out");
   strcpy(syscfg.ipadress, "0.0.0.0");
   strcpy(syscfg.hostname, "");
   strcpy(syscfg.mqqt_user, "shguser");
@@ -74,6 +74,10 @@ void setup()
   strcpy(syscfg.wifi_passwd, "");
   syscfg.hasInternet = false;
   syscfg.wifi_cycle = 10;
+  syscfg.mqtt_conected = false;
+  syscfg.mqtt_intervall = 300000;
+  syscfg.mqtt_keepAlive = 30000;
+  
   hostname = std::move("Zimmer-" + String(chipId));
   strcpy(syscfg.hostname, hostname.c_str());
 
@@ -96,18 +100,28 @@ void setup()
       }
       else
       {
-        strcpy(syscfg.mqqt_broker, sysDoc["mqqt_server"].as<String>().c_str());
-        strcpy(syscfg.mqqt_user, sysDoc["user"].as<String>().c_str());
-        strcpy(syscfg.mqqt_password, sysDoc["password"].as<String>().c_str());
-        strcpy(syscfg.mqqt_topicIn, sysDoc["topic_in"].as<String>().c_str());
-        strcpy(syscfg.mqqt_topicOut, sysDoc["topic_ou"].as<String>().c_str());
+        strcpy(syscfg.mqqt_broker, sysDoc["mqtt_server"].as<String>().c_str());
+        strcpy(syscfg.mqqt_user, sysDoc["mqtt_user"].as<String>().c_str());
+        strcpy(syscfg.mqqt_password, sysDoc["mqtt_password"].as<String>().c_str());
+        strcpy(syscfg.mqqt_topicIn, sysDoc["mqtt_topic"].as<String>().c_str());
         strcpy(syscfg.hostname, sysDoc["hostename"].as<String>().c_str());
         strcpy(syscfg.web_password, sysDoc["web_password"].as<String>().c_str());
         strcpy(syscfg.web_user, sysDoc["web_user"].as<String>().c_str());
         syscfg.enable_deepsleep = sysDoc["enable_deepsleep"].as<bool>();
         syscfg.wifi_cycle = sysDoc["wifi_cycle"].as<uint8_t>();
         syscfg.measure_cycle = sysDoc["temp_cycle"].as<uint8_t>();
-        syscfg.mqqt_port = sysDoc["temp_cycle"].as<uint32_t>();
+        syscfg.mqqt_port = sysDoc["mqtt_port"].as<uint32_t>();
+        syscfg.mqtt_intervall =sysDoc["mqtt_interval"].as<unsigned long>();
+        syscfg.mqtt_keepAlive = sysDoc["mqtt_keep_alive"].as<uint16_t>();
+        if(syscfg.mqqt_port == 0){
+          syscfg.mqqt_port = 1884;
+        }
+        if(syscfg.mqtt_intervall == 0) {
+          syscfg.mqtt_intervall = 300000;
+        }
+        if(syscfg.mqtt_keepAlive == 0) {
+          syscfg.mqtt_keepAlive = 30000;
+        }
       }
     }
   }
@@ -176,6 +190,9 @@ void setup()
 
   wifiTask = new WiFiTask(true, 10);
   Scheduler.start(wifiTask);
+
+  mqttTask = new MqttTask(true, syscfg.mqtt_intervall);
+  Scheduler.start(mqttTask);
 
   serverTask = new ServerTask();
   Scheduler.start(serverTask);

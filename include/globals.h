@@ -14,6 +14,7 @@
 #include <list>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <PubSubClient.h>
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -24,7 +25,8 @@
 extern Adafruit_SSD1306 display;
 extern AsyncWebServer server;
 extern Adafruit_AHTX0 aht;
-
+extern WiFiClient espClient;
+extern PubSubClient mqtt_client;
 
 typedef struct __attribute__((packed))
 {
@@ -37,7 +39,8 @@ typedef struct __attribute__((packed))
     char mqqt_user[32];
     char mqqt_password[255];
     char mqqt_topicIn[32];
-    char mqqt_topicOut[32];
+    unsigned long mqtt_intervall;
+    uint16_t mqtt_keepAlive;
     uint8_t wifi_cycle;
     uint8_t measure_cycle;
     bool enable_deepsleep;
@@ -47,6 +50,7 @@ typedef struct __attribute__((packed))
     char wifi_passwd[255];
     WiFiMode wifi_mode;
     bool hasInternet;
+    bool mqtt_conected;
 } system_config_t;
 extern system_config_t syscfg;
 

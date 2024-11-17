@@ -8,10 +8,9 @@
 #include "DisplayTask.h"
 #include "ServerTask.h"
 #include "MeasureTask.h"
+#include "MqttTask.h"
 
-void mqttCallback(char *topic, byte *payload, unsigned int length);
-void connectToMQTTBroker();
-void getSensorData();
+
 
 static const uint8_t image_shg_logo[1024] = {
     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 

@@ -146,6 +146,7 @@ protected:
     
     void loop()
     {
+        if(!syscfg.mqtt_conected) return;
         static unsigned long ts = 0;
         if (millis() - ts > syscfg.wifi_cycle * 1000)
         {
