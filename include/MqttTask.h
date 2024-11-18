@@ -38,6 +38,7 @@ private:
     }
     void connectToMqttBroker()
     {
+        int cnt = 0;
         while (!mqtt_client.connected())
         {
             Serial.println("Connecting to MQTT...");
@@ -54,6 +55,12 @@ private:
                 this->mqtt_available = false;
                 syscfg.mqtt_conected = false;
                 this->delay(2000);
+
+                if(cnt >= 10) {
+                    this->mqtt_available = false;
+                    return;
+                }
+                cnt++;
             }
         }
     }
@@ -66,6 +73,7 @@ protected:
         mqtt_client.setCallback(this->callback);
         mqtt_client.setKeepAlive(syscfg.mqtt_keepAlive);
         connectToMqttBroker();
+        if(this->mqtt_available == false) return;
         mqtt_client.subscribe("reset_mcu");
         mqtt_client.subscribe("update_config");
         mqtt_client.subscribe("sync_time");
